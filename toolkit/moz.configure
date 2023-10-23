@@ -2426,7 +2426,7 @@ with only_when(compile_environment | artifact_builds):
                 use_nasm = False
         elif target.cpu == "x86_64":
             flags = ["-D__x86_64__", "-DPIC", "-DELF", "-Pconfig_unix64.asm"]
-        elif target.cpu in ("x86", "arm", "aarch64"):
+        elif target.cpu in ("x86", "arm", "aarch64", "loongarch64"):
             flac_only = True
         else:
             enable = False

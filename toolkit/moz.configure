@@ -1518,6 +1518,7 @@ def webrtc_default(target):
         "aarch64",
         "x86",
         "ia64",
+        "loongarch64",
         "mips32",
         "mips64",
         "ppc",

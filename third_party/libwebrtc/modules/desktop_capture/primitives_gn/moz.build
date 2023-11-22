@@ -198,6 +198,10 @@ if CONFIG["MOZ_X11"] == "1" and CONFIG["OS_TARGET"] == "Linux" and CONFIG["TARGE
 
     DEFINES["USE_X11"] = "1"
 
+if CONFIG["MOZ_X11"] == "1" and CONFIG["OS_TARGET"] == "Linux" and CONFIG["TARGET_CPU"] == "loongarch64":
+
+    DEFINES["USE_X11"] = "1"
+
 if CONFIG["MOZ_X11"] == "1" and CONFIG["OS_TARGET"] == "Linux" and CONFIG["TARGET_CPU"] == "mips32":
 
     DEFINES["USE_X11"] = "1"

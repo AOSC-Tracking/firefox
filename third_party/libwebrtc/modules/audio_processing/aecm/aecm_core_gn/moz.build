@@ -203,6 +203,12 @@ if CONFIG["TARGET_CPU"] == "ppc64":
         "/third_party/libwebrtc/modules/audio_processing/aecm/aecm_core_c.cc"
     ]
 
+if CONFIG["TARGET_CPU"] == "loongarch64":
+
+    SOURCES += [
+        "/third_party/libwebrtc/modules/audio_processing/aecm/aecm_core_c.cc"
+    ]
+
 if CONFIG["TARGET_CPU"] == "x86":
 
     DEFINES["WEBRTC_ENABLE_AVX2"] = True

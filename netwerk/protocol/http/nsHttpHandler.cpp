@@ -940,6 +940,7 @@ void nsHttpHandler::BuildUserAgent() {
   mUserAgent.SetCapacity(mLegacyAppName.Length() + mLegacyAppVersion.Length() +
 #ifndef UA_SPARE_PLATFORM
                          mPlatform.Length() +
+                         mPlatform.Length() + 9 +
 #endif
                          mOscpu.Length() + mMisc.Length() + mProduct.Length() +
                          mProductSub.Length() + mAppName.Length() +
@@ -958,6 +959,7 @@ void nsHttpHandler::BuildUserAgent() {
   if (!mPlatform.IsEmpty()) {
     mUserAgent += mPlatform;
     mUserAgent.AppendLiteral("; ");
+    mUserAgent.AppendLiteral("AOSC OS; ");
   }
 #endif
   if (!mCompatDevice.IsEmpty()) {

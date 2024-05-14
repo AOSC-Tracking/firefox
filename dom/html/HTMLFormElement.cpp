@@ -487,7 +487,7 @@ static void CollectOrphans(nsINode* aRemovalRoot,
   }
 }
 
-void HTMLFormElement::UnbindFromTree(bool aNullParent) {
+void HTMLFormElement::UnbindFromTree(UnbindContext& aContext) {
   MaybeFireFormRemoved();
 
   // Note, this is explicitly using uncomposed doc, since we count
@@ -499,7 +499,7 @@ void HTMLFormElement::UnbindFromTree(bool aNullParent) {
   MarkOrphans(mControls->mNotInElements.AsList());
   MarkOrphans(mImageElements.AsList());
 
-  nsGenericHTMLElement::UnbindFromTree(aNullParent);
+  nsGenericHTMLElement::UnbindFromTree(aContext);
 
   nsINode* ancestor = this;
   nsINode* cur;

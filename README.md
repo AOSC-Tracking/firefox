@@ -1,6 +1,6 @@
 # Tracking repository for Firefox
 
-## SOP
+## Standard Operation Procedure
 
 1. Download a source archive of Firefox from <https://archive.mozilla.org/pub/firefox/>. Normally the URL is <https://archive.mozilla.org/pub/firefox/releases/$VER/source/firefox-$VER.source.tar.xz>, replacing "$VER" with the version to be imported, like `128.0`.
 2. Switch to the `tarball` branch (`git checkout tarball`), then remove all files and directories in the working tree, including the hidden one, except the `.git` directory.

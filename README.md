@@ -4,7 +4,7 @@
 
 1. Download a source archive of Firefox from <https://archive.mozilla.org/pub/firefox/>. Normally the URL is <https://archive.mozilla.org/pub/firefox/releases/$VER/source/firefox-$VER.source.tar.xz>, replacing "$VER" with the version to be imported, like `128.0`.
 2. Switch to the `tarball` branch (`git checkout tarball`), then remove all files and directories in the working tree, including the hidden one, except the `.git` directory.
-3. Extract all files from the archive, then move all files and directories, including the hidden one, from the `firefox-$VER` directory to the working tree.
+3. Extract all files from the archive, then move all files and directories, including the hidden one, from the `firefox-$VER` directory to the working tree (usually achieved with `tar --strip-component=1 -pxvf firefox-$VER.source.tar.xz`).
 4. Recursively remove `.gitattributes` files, `.gitignore` files, `.gitmodules` files and `.git` directories except the one in the top-level (`find . -name .gitattributes -delete; find . -name .gitignore -delete; find . -name .gitmodules -delete; find . -name .git`, note that `.git` directories have to be manually removed).
 5. Update the index using all files in the entire working tree (`git add -A`), then create a new commit with message of "chore: import v$VER" (`git commit -m "chore: import v$VER"`).
 6. Create a lightweight tag with name of "v$VER" (`git tag "v$VER"`).

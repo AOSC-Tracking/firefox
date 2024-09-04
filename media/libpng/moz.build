@@ -50,6 +50,13 @@ if CONFIG['INTEL_ARCHITECTURE']:
         'intel/intel_init.c'
     ]
 
+if CONFIG['TARGET_CPU'] == 'loongarch64':
+    DEFINES['MOZ_PNG_USE_LOONGARCH_LSX'] = True
+    UNIFIED_SOURCES += [
+        'loongarch/filter_lsx_intrinsics.c',
+        'loongarch/loongarch_lsx_init.c'
+    ]
+
 if CONFIG['TARGET_CPU'] in ('mips32', 'mips64'):
     DEFINES['MOZ_PNG_USE_MIPS_MSA'] = True
     UNIFIED_SOURCES += [

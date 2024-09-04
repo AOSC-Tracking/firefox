@@ -650,25 +650,6 @@ test "$host_alias" != "$target_alias" &&
   program_prefix=${target_alias}-
 
 
-CFLAGS="${CFLAGS=}"
-CXXFLAGS="${CXXFLAGS=}"
-LDFLAGS="${LDFLAGS=}"
-
-
-case "$target" in
-*-android*|*-linuxandroid*)
-    LDFLAGS="$ANDROID_LDFLAGS $LDFLAGS"
-    CFLAGS="$ANDROID_CFLAGS $CFLAGS"
-    CXXFLAGS="$ANDROID_CXXFLAGS $CXXFLAGS"
-    ;;
-esac
-
-
-W32API_VERSION=3.14
-
-
-LDFLAGS="$LDFLAGS $LINKER_LDFLAGS $PACK_REL_RELOC_FLAGS"
-
 
 if test "$COMPILE_ENVIRONMENT"; then
 
@@ -689,7 +670,7 @@ esac
 # Extract the first word of "gcc", so it can be a program name with args.
 set dummy gcc; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:693: checking for $ac_word" >&5
+echo "configure:674: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -719,7 +700,7 @@ if test -z "$CC"; then
   # Extract the first word of "cc", so it can be a program name with args.
 set dummy cc; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:723: checking for $ac_word" >&5
+echo "configure:704: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -770,7 +751,7 @@ fi
       # Extract the first word of "cl", so it can be a program name with args.
 set dummy cl; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:774: checking for $ac_word" >&5
+echo "configure:755: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -802,7 +783,7 @@ fi
 fi
 
 echo $ac_n "checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works""... $ac_c" 1>&6
-echo "configure:806: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works" >&5
+echo "configure:787: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works" >&5
 
 ac_ext=c
 # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
@@ -820,12 +801,12 @@ if eval "test \"`echo '$''{'ac_cv_prog_cc_works'+set}'`\" = set"; then
 else
   cat > conftest.$ac_ext << EOF
 
-#line 824 "configure"
+#line 805 "configure"
 #include "confdefs.h"
 
 main(){return(0);}
 EOF
-if { (eval echo configure:829: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+if { (eval echo configure:810: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
   ac_cv_prog_cc_works=yes
   # If we can't run a trivial program, we are probably using a cross compiler.
   if (./conftest; exit) 2>/dev/null; then
@@ -857,12 +838,12 @@ if test $ac_cv_prog_cc_works = no; then
   { echo "configure: error: installation or configuration problem: C compiler cannot create executables." 1>&2; echo "configure: error: installation or configuration problem: C compiler cannot create executables." 1>&5; exit 1; }
 fi
 echo $ac_n "checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler""... $ac_c" 1>&6
-echo "configure:861: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler" >&5
+echo "configure:842: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler" >&5
 echo "$ac_t""$ac_cv_prog_cc_cross" 1>&6
 cross_compiling=$ac_cv_prog_cc_cross
 
 echo $ac_n "checking whether we are using GNU C""... $ac_c" 1>&6
-echo "configure:866: checking whether we are using GNU C" >&5
+echo "configure:847: checking whether we are using GNU C" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_gcc'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -871,7 +852,7 @@ else
   yes;
 #endif
 EOF
-if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:875: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | grep -E yes >/dev/null 2>&1; then
+if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:856: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | grep -E yes >/dev/null 2>&1; then
   ac_cv_prog_gcc=yes
 else
   ac_cv_prog_gcc=no
@@ -890,7 +871,7 @@ ac_test_CFLAGS="${CFLAGS+set}"
 ac_save_CFLAGS="$CFLAGS"
 CFLAGS=
 echo $ac_n "checking whether ${CC-cc} accepts -g""... $ac_c" 1>&6
-echo "configure:894: checking whether ${CC-cc} accepts -g" >&5
+echo "configure:875: checking whether ${CC-cc} accepts -g" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_cc_g'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -926,7 +907,7 @@ do
 # Extract the first word of "$ac_prog", so it can be a program name with args.
 set dummy $ac_prog; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:930: checking for $ac_word" >&5
+echo "configure:911: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CXX'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -958,7 +939,7 @@ test -n "$CXX" || CXX="gcc"
 
 
 echo $ac_n "checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) works""... $ac_c" 1>&6
-echo "configure:962: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) works" >&5
+echo "configure:943: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) works" >&5
 
 ac_ext=C
 # CXXFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
@@ -976,12 +957,12 @@ if eval "test \"`echo '$''{'ac_cv_prog_cxx_works'+set}'`\" = set"; then
 else
   cat > conftest.$ac_ext << EOF
 
-#line 980 "configure"
+#line 961 "configure"
 #include "confdefs.h"
 
 int main(){return(0);}
 EOF
-if { (eval echo configure:985: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+if { (eval echo configure:966: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
   ac_cv_prog_cxx_works=yes
   # If we can't run a trivial program, we are probably using a cross compiler.
   if (./conftest; exit) 2>/dev/null; then
@@ -1013,12 +994,12 @@ if test $ac_cv_prog_cxx_works = no; then
   { echo "configure: error: installation or configuration problem: C++ compiler cannot create executables." 1>&2; echo "configure: error: installation or configuration problem: C++ compiler cannot create executables." 1>&5; exit 1; }
 fi
 echo $ac_n "checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) is a cross-compiler""... $ac_c" 1>&6
-echo "configure:1017: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) is a cross-compiler" >&5
+echo "configure:998: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) is a cross-compiler" >&5
 echo "$ac_t""$ac_cv_prog_cxx_cross" 1>&6
 cross_compiling=$ac_cv_prog_cxx_cross
 
 echo $ac_n "checking whether we are using GNU C++""... $ac_c" 1>&6
-echo "configure:1022: checking whether we are using GNU C++" >&5
+echo "configure:1003: checking whether we are using GNU C++" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_gxx'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1027,7 +1008,7 @@ else
   yes;
 #endif
 EOF
-if { ac_try='${CXX-g++} -E conftest.C'; { (eval echo configure:1031: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | grep -E yes >/dev/null 2>&1; then
+if { ac_try='${CXX-g++} -E conftest.C'; { (eval echo configure:1012: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | grep -E yes >/dev/null 2>&1; then
   ac_cv_prog_gxx=yes
 else
   ac_cv_prog_gxx=no
@@ -1046,7 +1027,7 @@ ac_test_CXXFLAGS="${CXXFLAGS+set}"
 ac_save_CXXFLAGS="$CXXFLAGS"
 CXXFLAGS=
 echo $ac_n "checking whether ${CXX-g++} accepts -g""... $ac_c" 1>&6
-echo "configure:1050: checking whether ${CXX-g++} accepts -g" >&5
+echo "configure:1031: checking whether ${CXX-g++} accepts -g" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_cxx_g'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1084,7 +1065,7 @@ else
     # Extract the first word of "gcc", so it can be a program name with args.
 set dummy gcc; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1088: checking for $ac_word" >&5
+echo "configure:1069: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1114,7 +1095,7 @@ if test -z "$CC"; then
   # Extract the first word of "cc", so it can be a program name with args.
 set dummy cc; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1118: checking for $ac_word" >&5
+echo "configure:1099: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1165,7 +1146,7 @@ fi
       # Extract the first word of "cl", so it can be a program name with args.
 set dummy cl; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1169: checking for $ac_word" >&5
+echo "configure:1150: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1197,7 +1178,7 @@ fi
 fi
 
 echo $ac_n "checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works""... $ac_c" 1>&6
-echo "configure:1201: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works" >&5
+echo "configure:1182: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works" >&5
 
 ac_ext=c
 # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
@@ -1215,12 +1196,12 @@ if eval "test \"`echo '$''{'ac_cv_prog_cc_works'+set}'`\" = set"; then
 else
   cat > conftest.$ac_ext << EOF
 
-#line 1219 "configure"
+#line 1200 "configure"
 #include "confdefs.h"
 
 main(){return(0);}
 EOF
-if { (eval echo configure:1224: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+if { (eval echo configure:1205: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
   ac_cv_prog_cc_works=yes
   # If we can't run a trivial program, we are probably using a cross compiler.
   if (./conftest; exit) 2>/dev/null; then
@@ -1252,12 +1233,12 @@ if test $ac_cv_prog_cc_works = no; then
   { echo "configure: error: installation or configuration problem: C compiler cannot create executables." 1>&2; echo "configure: error: installation or configuration problem: C compiler cannot create executables." 1>&5; exit 1; }
 fi
 echo $ac_n "checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler""... $ac_c" 1>&6
-echo "configure:1256: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler" >&5
+echo "configure:1237: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler" >&5
 echo "$ac_t""$ac_cv_prog_cc_cross" 1>&6
 cross_compiling=$ac_cv_prog_cc_cross
 
 echo $ac_n "checking whether we are using GNU C""... $ac_c" 1>&6
-echo "configure:1261: checking whether we are using GNU C" >&5
+echo "configure:1242: checking whether we are using GNU C" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_gcc'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1266,7 +1247,7 @@ else
   yes;
 #endif
 EOF
-if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:1270: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | grep -E yes >/dev/null 2>&1; then
+if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:1251: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | grep -E yes >/dev/null 2>&1; then
   ac_cv_prog_gcc=yes
 else
   ac_cv_prog_gcc=no
@@ -1285,7 +1266,7 @@ ac_test_CFLAGS="${CFLAGS+set}"
 ac_save_CFLAGS="$CFLAGS"
 CFLAGS=
 echo $ac_n "checking whether ${CC-cc} accepts -g""... $ac_c" 1>&6
-echo "configure:1289: checking whether ${CC-cc} accepts -g" >&5
+echo "configure:1270: checking whether ${CC-cc} accepts -g" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_cc_g'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1326,7 +1307,7 @@ do
 # Extract the first word of "$ac_prog", so it can be a program name with args.
 set dummy $ac_prog; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1330: checking for $ac_word" >&5
+echo "configure:1311: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CXX'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1358,7 +1339,7 @@ test -n "$CXX" || CXX="gcc"
 
 
 echo $ac_n "checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) works""... $ac_c" 1>&6
-echo "configure:1362: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) works" >&5
+echo "configure:1343: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) works" >&5
 
 ac_ext=C
 # CXXFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
@@ -1376,12 +1357,12 @@ if eval "test \"`echo '$''{'ac_cv_prog_cxx_works'+set}'`\" = set"; then
 else
   cat > conftest.$ac_ext << EOF
 
-#line 1380 "configure"
+#line 1361 "configure"
 #include "confdefs.h"
 
 int main(){return(0);}
 EOF
-if { (eval echo configure:1385: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+if { (eval echo configure:1366: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
   ac_cv_prog_cxx_works=yes
   # If we can't run a trivial program, we are probably using a cross compiler.
   if (./conftest; exit) 2>/dev/null; then
@@ -1413,12 +1394,12 @@ if test $ac_cv_prog_cxx_works = no; then
   { echo "configure: error: installation or configuration problem: C++ compiler cannot create executables." 1>&2; echo "configure: error: installation or configuration problem: C++ compiler cannot create executables." 1>&5; exit 1; }
 fi
 echo $ac_n "checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) is a cross-compiler""... $ac_c" 1>&6
-echo "configure:1417: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) is a cross-compiler" >&5
+echo "configure:1398: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) is a cross-compiler" >&5
 echo "$ac_t""$ac_cv_prog_cxx_cross" 1>&6
 cross_compiling=$ac_cv_prog_cxx_cross
 
 echo $ac_n "checking whether we are using GNU C++""... $ac_c" 1>&6
-echo "configure:1422: checking whether we are using GNU C++" >&5
+echo "configure:1403: checking whether we are using GNU C++" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_gxx'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1427,7 +1408,7 @@ else
   yes;
 #endif
 EOF
-if { ac_try='${CXX-g++} -E conftest.C'; { (eval echo configure:1431: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | grep -E yes >/dev/null 2>&1; then
+if { ac_try='${CXX-g++} -E conftest.C'; { (eval echo configure:1412: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | grep -E yes >/dev/null 2>&1; then
   ac_cv_prog_gxx=yes
 else
   ac_cv_prog_gxx=no
@@ -1446,7 +1427,7 @@ ac_test_CXXFLAGS="${CXXFLAGS+set}"
 ac_save_CXXFLAGS="$CXXFLAGS"
 CXXFLAGS=
 echo $ac_n "checking whether ${CXX-g++} accepts -g""... $ac_c" 1>&6
-echo "configure:1450: checking whether ${CXX-g++} accepts -g" >&5
+echo "configure:1431: checking whether ${CXX-g++} accepts -g" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_cxx_g'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1479,230 +1460,8 @@ fi
 
 fi
 
-
-WINVER=0A00
-
-case "$target" in
-*-mingw*)
-    if test "$CC_TYPE" = clang-cl; then
-        # Check to see if we are really running in a msvc environemnt
-        _WIN32_MSVC=1
-
-        # Make sure compilers are valid
-        CXXFLAGS="$CXXFLAGS -TP"
-        
-        ac_ext=c
-# CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
-ac_cpp='$CPP $CPPFLAGS'
-ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
-ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
-cross_compiling=$ac_cv_prog_cc_cross
-
-if test "$CC_TYPE" = "clang-cl"; then
-  ac_link="$ac_compile"' && ${LINKER} -OUT:conftest${ac_exeext} $LDFLAGS conftest.obj $LIBS 1>&5'
-fi
-
-        cat > conftest.$ac_ext <<EOF
-#line 1507 "configure"
-#include "confdefs.h"
-#include <stdio.h>
-int main() {
- printf("Hello World\n"); 
-; return 0; }
-EOF
-if { (eval echo configure:1514: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-  :
-else
-  echo "configure: failed program was:" >&5
-  cat conftest.$ac_ext >&5
-  rm -rf conftest*
-  { echo "configure: error: \$(CC) test failed.  You must have MS VC++ in your path to build." 1>&2; echo "configure: error: \$(CC) test failed.  You must have MS VC++ in your path to build." 1>&5; exit 1; } 
-fi
-rm -f conftest*
-
-        ac_ext=C
-# CXXFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
-ac_cpp='$CXXCPP $CPPFLAGS'
-ac_compile='${CXX-g++} -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
-ac_link='${CXX-g++} -o conftest${ac_exeext} $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
-cross_compiling=$ac_cv_prog_cxx_cross
-
-if test "$CC_TYPE" = "clang-cl"; then
-  ac_link="$ac_compile"' && ${LINKER} -OUT:conftest${ac_exeext} $LDFLAGS conftest.obj $LIBS 1>&5'
-fi
-
-        cat > conftest.$ac_ext <<EOF
-#line 1536 "configure"
-#include "confdefs.h"
-#include <new.h>
-int main() {
- unsigned *test = new unsigned(42); 
-; return 0; }
-EOF
-if { (eval echo configure:1543: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-  :
-else
-  echo "configure: failed program was:" >&5
-  cat conftest.$ac_ext >&5
-  rm -rf conftest*
-  { echo "configure: error: \$(CXX) test failed.  You must have MS VC++ in your path to build." 1>&2; echo "configure: error: \$(CXX) test failed.  You must have MS VC++ in your path to build." 1>&5; exit 1; } 
-fi
-rm -f conftest*
-        ac_ext=c
-# CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
-ac_cpp='$CPP $CPPFLAGS'
-ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
-ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
-cross_compiling=$ac_cv_prog_cc_cross
-
-if test "$CC_TYPE" = "clang-cl"; then
-  ac_link="$ac_compile"' && ${LINKER} -OUT:conftest${ac_exeext} $LDFLAGS conftest.obj $LIBS 1>&5'
-fi
-
-
-        cat >> confdefs.pytmp <<\EOF
-    (''' _CRT_SECURE_NO_WARNINGS ''', ' 1 ')
-EOF
-cat >> confdefs.h <<\EOF
-#define _CRT_SECURE_NO_WARNINGS 1
-EOF
-
-        cat >> confdefs.pytmp <<\EOF
-    (''' _CRT_NONSTDC_NO_WARNINGS ''', ' 1 ')
-EOF
-cat >> confdefs.h <<\EOF
-#define _CRT_NONSTDC_NO_WARNINGS 1
-EOF
-
-
-        MSVC_C_RUNTIME_DLL=vcruntime140.dll
-        if test "$TARGET_CPU" != "x86"; then
-            MSVC_C_RUNTIME_1_DLL=vcruntime140_1.dll
-        fi
-        MSVC_CXX_RUNTIME_DLL=msvcp140.dll
-
-        # -Zc:sizedDealloc- disables C++14 global sized deallocation (see bug 1160146)
-        CXXFLAGS="$CXXFLAGS -Zc:sizedDealloc-"
-
-        
-        
-        
-
-        cat >> confdefs.pytmp <<\EOF
-    (''' HAVE_SEH_EXCEPTIONS ''', ' 1 ')
-EOF
-cat >> confdefs.h <<\EOF
-#define HAVE_SEH_EXCEPTIONS 1
-EOF
-
-    else
-        # Check w32api version
-        _W32API_MAJOR_VERSION=`echo $W32API_VERSION | $AWK -F\. '{ print $1 }'`
-        _W32API_MINOR_VERSION=`echo $W32API_VERSION | $AWK -F\. '{ print $2 }'`
-        echo $ac_n "checking for w32api version >= $W32API_VERSION""... $ac_c" 1>&6
-echo "configure:1604: checking for w32api version >= $W32API_VERSION" >&5
-        cat > conftest.$ac_ext <<EOF
-#line 1606 "configure"
-#include "confdefs.h"
-#include <w32api.h>
-int main() {
-#if (__W32API_MAJOR_VERSION < $_W32API_MAJOR_VERSION) || \
-                (__W32API_MAJOR_VERSION == $_W32API_MAJOR_VERSION && \
-                 __W32API_MINOR_VERSION < $_W32API_MINOR_VERSION)
-                #error "test failed."
-            #endif
-            
-; return 0; }
-EOF
-if { (eval echo configure:1618: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-  rm -rf conftest*
-   res=yes 
-else
-  echo "configure: failed program was:" >&5
-  cat conftest.$ac_ext >&5
-  rm -rf conftest*
-   res=no 
-fi
-rm -f conftest*
-        echo "$ac_t""$res" 1>&6
-        if test "$res" != "yes"; then
-            { echo "configure: error: w32api version $W32API_VERSION or higher required." 1>&2; echo "configure: error: w32api version $W32API_VERSION or higher required." 1>&5; exit 1; }
-        fi
-        # strsafe.h on mingw uses macros for function deprecation that pollutes namespace
-        # causing problems with local implementations with the same name.
-        cat >> confdefs.pytmp <<\EOF
-    (''' STRSAFE_NO_DEPRECATE ''', ' 1 ')
-EOF
-cat >> confdefs.h <<\EOF
-#define STRSAFE_NO_DEPRECATE 1
-EOF
-
-    fi
-
-    cat >> confdefs.pytmp <<\EOF
-    (''' _USE_MATH_DEFINES ''', ' 1 ')
-EOF
-cat >> confdefs.h <<\EOF
-#define _USE_MATH_DEFINES 1
-EOF
- # Otherwise Windows' math.h doesn't #define M_PI.
-
-    CFLAGS="$CFLAGS -D_HAS_EXCEPTIONS=0"
-    CXXFLAGS="$CXXFLAGS -D_HAS_EXCEPTIONS=0"
-
-    cat >> confdefs.pytmp <<EOF
-    (''' WINVER ''', r''' 0x$WINVER ''')
-EOF
-cat >> confdefs.h <<EOF
-#define WINVER 0x$WINVER
-EOF
-
-    cat >> confdefs.pytmp <<EOF
-    (''' _WIN32_WINNT ''', r''' 0x$WINVER ''')
-EOF
-cat >> confdefs.h <<EOF
-#define _WIN32_WINNT 0x$WINVER
-EOF
-
-    cat >> confdefs.pytmp <<EOF
-    (''' _WIN32_IE ''', r''' 0x0A00 ''')
-EOF
-cat >> confdefs.h <<EOF
-#define _WIN32_IE 0x0A00
-EOF
-
-
-    ;;
-esac
-
-if test -n "$_WIN32_MSVC"; then
-    # Since we're skipping compiler and library checks, hard-code
-    # some facts here.
-    cat >> confdefs.pytmp <<\EOF
-    (''' HAVE_IO_H ''', ' 1 ')
-EOF
-cat >> confdefs.h <<\EOF
-#define HAVE_IO_H 1
-EOF
-
-fi
-
 fi # COMPILE_ENVIRONMENT
 
-if test "$COMPILE_ENVIRONMENT"; then
-    
-if test -n "$_ARM_FLAGS"; then
-    CFLAGS="$CFLAGS $_ARM_FLAGS"
-    CXXFLAGS="$CXXFLAGS $_ARM_FLAGS"
-    if test -n "$_THUMB_FLAGS"; then
-        LDFLAGS="$LDFLAGS $_THUMB_FLAGS"
-    fi
-fi
-
-fi # COMPILE_ENVIRONMENT
-
-
-MOZ_OPTIMIZE_LDFLAGS="${_COMPILATION_OPTIMIZE_LDFLAGS} ${MOZ_OPTIMIZE_FLAGS}"
 
 case "$target" in
 *-darwin*)
@@ -1715,131 +1474,12 @@ case "$target" in
 
 *-*linux*)
     if test "$CC_TYPE" != clang-cl ; then
-        MOZ_PGO_OPTIMIZE_FLAGS="-O3"
         MOZ_OPTIMIZE_FLAGS="-O2"
     fi
     ;;
 *-mingw*)
-    # certain versions of cygwin's makedepend barf on the
-    # #include <string> vs -I./dist/include/string issue so don't use it
-    if test "$CC_TYPE" != clang-cl ; then
-
-        MOZ_OPTIMIZE_FLAGS="-O2"
-
-        WIN32_CONSOLE_EXE_LDFLAGS=-mconsole
-        WIN32_GUI_EXE_LDFLAGS=-mwindows
-
-        # Silence problematic clang warnings
-        CXXFLAGS="$CXXFLAGS -Wno-incompatible-ms-struct"
-        LDFLAGS="$LDFLAGS -Wl,--no-insert-timestamp"
-    else
-        WIN32_SUBSYSTEM_VERSION=10.0
-        WIN32_CONSOLE_EXE_LDFLAGS=-SUBSYSTEM:CONSOLE,$WIN32_SUBSYSTEM_VERSION
-        WIN32_GUI_EXE_LDFLAGS=-SUBSYSTEM:WINDOWS,$WIN32_SUBSYSTEM_VERSION
-        CFLAGS="$CFLAGS -Gy -Zc:inline"
-        CXXFLAGS="$CXXFLAGS -Gy -Zc:inline"
-        if test "$TARGET_CPU" = "x86"; then
-                                                
-            if test -z `echo $CFLAGS | grep -i [-/]arch:`; then
-              CFLAGS="$CFLAGS -arch:SSE2"
-            fi
-            if test -z `echo $CXXFLAGS | grep -i [-/]arch:`; then
-              CXXFLAGS="$CXXFLAGS -arch:SSE2"
-            fi
-            
-        fi
-                                if test -z "$MOZ_ASAN"; then
-            CFLAGS="$CFLAGS -Gw"
-            CXXFLAGS="$CXXFLAGS -Gw"
-        else
-            # String tail merging doesn't play nice with ASan's ODR checker.
-            LDFLAGS="$LDFLAGS -opt:nolldtailmerge"
-        fi
-        # Silence VS2017 15.5+ TR1 deprecation warnings hit by older gtest versions
-        CXXFLAGS="$CXXFLAGS -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING"
-        MOZ_DEBUG_LDFLAGS='-DEBUG'
-        if test "$HOST_OS_ARCH" != "WINNT"; then
-          # %_PDB% is a special signal to emit only the PDB basename. This
-          # avoids problems in Windows tools that don't like forward-slashes.
-          MOZ_DEBUG_LDFLAGS="$MOZ_DEBUG_LDFLAGS -PDBALTPATH:%_PDB%"
-        fi
-        MOZ_OPTIMIZE_FLAGS='-O2'
-        LDFLAGS="$LDFLAGS -LARGEADDRESSAWARE"
-    fi
-    cat >> confdefs.pytmp <<\EOF
-    (''' WIN32_LEAN_AND_MEAN ''', ' 1 ')
-EOF
-cat >> confdefs.h <<\EOF
-#define WIN32_LEAN_AND_MEAN 1
-EOF
-
-        cat >> confdefs.pytmp <<\EOF
-    (''' NOMINMAX ''', ' 1 ')
-EOF
-cat >> confdefs.h <<\EOF
-#define NOMINMAX 1
-EOF
-
-
-    case "$host_os" in
-    cygwin*|msvc*|mks*)
-        { echo "configure: error: Using a Cygwin build environment is unsupported. Configure cannot check for presence of necessary headers. Please upgrade to MozillaBuild; see https://developer.mozilla.org/en/Windows_Build_Prerequisites." 1>&2; echo "configure: error: Using a Cygwin build environment is unsupported. Configure cannot check for presence of necessary headers. Please upgrade to MozillaBuild; see https://developer.mozilla.org/en/Windows_Build_Prerequisites." 1>&5; exit 1; }
-        ;;
-    esac
-
-    case "$target" in
-    i*86-*)
-        if test "$CC_TYPE" != clang-cl ; then
-            CFLAGS="$CFLAGS -mstackrealign"
-            CXXFLAGS="$CXXFLAGS -mstackrealign"
-            LDFLAGS="$LDFLAGS -Wl,--large-address-aware"
-        else
-            LDFLAGS="$LDFLAGS -SAFESEH"
-        fi
-
-        cat >> confdefs.pytmp <<\EOF
-    (''' _X86_ ''', ' 1 ')
-EOF
-cat >> confdefs.h <<\EOF
-#define _X86_ 1
-EOF
-
-        ;;
-    x86_64-*)
-        cat >> confdefs.pytmp <<\EOF
-    (''' _AMD64_ ''', ' 1 ')
-EOF
-cat >> confdefs.h <<\EOF
-#define _AMD64_ 1
-EOF
-
-        ;;
-    aarch64-*)
-        cat >> confdefs.pytmp <<\EOF
-    (''' _ARM64_ ''', ' 1 ')
-EOF
-cat >> confdefs.h <<\EOF
-#define _ARM64_ 1
-EOF
-
-        ;;
-    *)
-        cat >> confdefs.pytmp <<\EOF
-    (''' _CPU_ARCH_NOT_DEFINED ''', ' 1 ')
-EOF
-cat >> confdefs.h <<\EOF
-#define _CPU_ARCH_NOT_DEFINED 1
-EOF
-
-        ;;
-    esac
+    MOZ_OPTIMIZE_FLAGS="-O2"
     ;;
-
-*-netbsd*)
-    CFLAGS="$CFLAGS -Dunix"
-    CXXFLAGS="$CXXFLAGS -Dunix"
-    ;;
-
 esac
 
 if test -z "$MOZ_OPTIMIZE_FLAGS"; then
@@ -1867,7 +1507,7 @@ fi
 
 # Allow the application to influence configure with a confvars.sh script.
 echo $ac_n "checking if app-specific confvars.sh exists""... $ac_c" 1>&6
-echo "configure:1871: checking if app-specific confvars.sh exists" >&5
+echo "configure:1511: checking if app-specific confvars.sh exists" >&5
 if test -f "${srcdir}/${MOZ_BUILD_APP}/confvars.sh" ; then
   echo "$ac_t""${srcdir}/${MOZ_BUILD_APP}/confvars.sh" 1>&6
   . "${srcdir}/${MOZ_BUILD_APP}/confvars.sh"
@@ -1915,121 +1555,6 @@ fi
 if test -n "${MOZ_CONFIGURE_OPTIMIZE_FLAGS}"; then
     MOZ_OPTIMIZE_FLAGS=${MOZ_CONFIGURE_OPTIMIZE_FLAGS}
 fi
-
-if test "$COMPILE_ENVIRONMENT"; then
-if test -n "$MOZ_OPTIMIZE"; then
-    echo $ac_n "checking for valid C compiler optimization flags""... $ac_c" 1>&6
-echo "configure:1923: checking for valid C compiler optimization flags" >&5
-    _SAVE_CFLAGS=$CFLAGS
-    CFLAGS="$CFLAGS $MOZ_OPTIMIZE_FLAGS"
-    cat > conftest.$ac_ext <<EOF
-#line 1927 "configure"
-#include "confdefs.h"
-#include <stdio.h>
-int main() {
-printf("Hello World\n");
-; return 0; }
-EOF
-if { (eval echo configure:1934: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-  rm -rf conftest*
-  _results=yes
-else
-  echo "configure: failed program was:" >&5
-  cat conftest.$ac_ext >&5
-  rm -rf conftest*
-  _results=no
-fi
-rm -f conftest*
-    echo "$ac_t""$_results" 1>&6
-    if test "$_results" = "no"; then
-        { echo "configure: error: These compiler flags for C are invalid: $MOZ_OPTIMIZE_FLAGS" 1>&2; echo "configure: error: These compiler flags for C are invalid: $MOZ_OPTIMIZE_FLAGS" 1>&5; exit 1; }
-    fi
-    CFLAGS=$_SAVE_CFLAGS
-    if test -n "$MOZ_LTO" -a "$CC_TYPE" = clang ; then
-        # When using llvm-based LTO, non numeric optimization levels are
-        # not supported by the linker, so force the linker to use -O2 (
-        # which doesn't influence the level compilation units are actually
-        # compiled at).
-        case " $MOZ_OPTIMIZE_FLAGS " in
-        *\ -Os\ *|*\ -Oz\ *)
-            MOZ_OPTIMIZE_LDFLAGS="$MOZ_OPTIMIZE_LDFLAGS -O2"
-            ;;
-        esac
-    fi
-fi
-fi # COMPILE_ENVIRONMENT
-
-
-
-
-
-
-if test -n "$COMPILE_ENVIRONMENT"; then
-
-
-if test -n "$ENABLE_CLANG_PLUGIN"; then
-    LLVM_CXXFLAGS=`$LLVM_CONFIG --cxxflags`
-
-    LLVM_LDFLAGS=`$LLVM_CONFIG --ldflags | tr '\n' ' '`
-
-    if test "$HOST_OS_ARCH" = WINNT ; then
-                LLVM_CXXFLAGS=$(echo "$LLVM_CXXFLAGS" | tr '\\' '/')
-        LLVM_LDFLAGS=$(echo "$LLVM_LDFLAGS" | tr '\\' '/')
-    fi
-
-    CLANG_PLUGIN_FLAGS="-Xclang -load -Xclang $CLANG_PLUGIN -Xclang -add-plugin -Xclang moz-check"
-
-    cat >> confdefs.pytmp <<\EOF
-    (''' MOZ_CLANG_PLUGIN ''', ' 1 ')
-EOF
-cat >> confdefs.h <<\EOF
-#define MOZ_CLANG_PLUGIN 1
-EOF
-
-fi
-
-if test -n "$ENABLE_MOZSEARCH_PLUGIN"; then
-    if test -z "${ENABLE_CLANG_PLUGIN}"; then
-        { echo "configure: error: Can't use mozsearch plugin without --enable-clang-plugin." 1>&2; echo "configure: error: Can't use mozsearch plugin without --enable-clang-plugin." 1>&5; exit 1; }
-    fi
-
-    CLANG_PLUGIN_FLAGS="$CLANG_PLUGIN_FLAGS -Xclang -add-plugin -Xclang mozsearch-index"
-
-        CLANG_PLUGIN_FLAGS="$CLANG_PLUGIN_FLAGS -Xclang -plugin-arg-mozsearch-index -Xclang $_topsrcdir"
-    CLANG_PLUGIN_FLAGS="$CLANG_PLUGIN_FLAGS -Xclang -plugin-arg-mozsearch-index -Xclang $_objdir/mozsearch_index"
-    CLANG_PLUGIN_FLAGS="$CLANG_PLUGIN_FLAGS -Xclang -plugin-arg-mozsearch-index -Xclang $_objdir"
-
-    cat >> confdefs.pytmp <<\EOF
-    (''' MOZ_MOZSEARCH_PLUGIN ''', ' 1 ')
-EOF
-cat >> confdefs.h <<\EOF
-#define MOZ_MOZSEARCH_PLUGIN 1
-EOF
-
-fi
-
-
-
-
-
-
-
-
-
-
-fi # COMPILE_ENVIRONMENT
-
-ac_ext=c
-# CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
-ac_cpp='$CPP $CPPFLAGS'
-ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
-ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
-cross_compiling=$ac_cv_prog_cc_cross
-
-if test "$CC_TYPE" = "clang-cl"; then
-  ac_link="$ac_compile"' && ${LINKER} -OUT:conftest${ac_exeext} $LDFLAGS conftest.obj $LIBS 1>&5'
-fi
-
 
 
 
@@ -2130,28 +1655,6 @@ EOF
 cat >> confdefs.h <<EOF
 #define MOZ_APP_UA_VERSION "$MOZ_APP_VERSION"
 EOF
-
-
-
-
-CFLAGS=`echo \
-    $_COMPILATION_CFLAGS \
-    $CFLAGS`
-
-CXXFLAGS=`echo \
-    $_COMPILATION_CXXFLAGS \
-    $CXXFLAGS`
-
-LDFLAGS=`echo \
-    $LDFLAGS \
-    $_COMPILATION_LDFLAGS`
-
-OS_CFLAGS="$CFLAGS"
-OS_CXXFLAGS="$CXXFLAGS"
-OS_LDFLAGS="$LDFLAGS"
-
-
-
 
 
 
@@ -2280,21 +1783,9 @@ sed 's/$/,/' >> $CONFIG_STATUS <<EOF
     (''' build_os ''', r''' $build_os ''')
     (''' CC ''', r''' $CC ''')
     (''' CXX ''', r''' $CXX ''')
-    (''' MSVC_C_RUNTIME_DLL ''', r''' $MSVC_C_RUNTIME_DLL ''')
-    (''' MSVC_C_RUNTIME_1_DLL ''', r''' $MSVC_C_RUNTIME_1_DLL ''')
-    (''' MSVC_CXX_RUNTIME_DLL ''', r''' $MSVC_CXX_RUNTIME_DLL ''')
     (''' MOZ_OFFICIAL_BRANDING ''', r''' $MOZ_OFFICIAL_BRANDING ''')
     (''' MOZ_BRANDING_DIRECTORY ''', r''' $MOZ_BRANDING_DIRECTORY ''')
     (''' MOZ_OPTIMIZE_FLAGS ''', list(split(r''' $MOZ_OPTIMIZE_FLAGS ''')))
-    (''' MOZ_OPTIMIZE_LDFLAGS ''', list(split(r''' $MOZ_OPTIMIZE_LDFLAGS ''')))
-    (''' MOZ_PGO_OPTIMIZE_FLAGS ''', list(split(r''' $MOZ_PGO_OPTIMIZE_FLAGS ''')))
-    (''' CLANG_PLUGIN_FLAGS ''', list(split(r''' $CLANG_PLUGIN_FLAGS ''')))
-    (''' LLVM_CXXFLAGS ''', list(split(r''' $LLVM_CXXFLAGS ''')))
-    (''' LLVM_LDFLAGS ''', list(split(r''' $LLVM_LDFLAGS ''')))
-    (''' ENABLE_CLANG_PLUGIN ''', r''' $ENABLE_CLANG_PLUGIN ''')
-    (''' ENABLE_CLANG_PLUGIN_ALPHA ''', r''' $ENABLE_CLANG_PLUGIN_ALPHA ''')
-    (''' ENABLE_MOZSEARCH_PLUGIN ''', r''' $ENABLE_MOZSEARCH_PLUGIN ''')
-    (''' MOZ_DEBUG_LDFLAGS ''', list(split(r''' $MOZ_DEBUG_LDFLAGS ''')))
     (''' MOZ_MACBUNDLE_NAME ''', r''' $MOZ_MACBUNDLE_NAME ''')
     (''' MOZ_MACBUNDLE_ID ''', r''' $MOZ_MACBUNDLE_ID ''')
     (''' MOZ_CHILD_PROCESS_APPNAME ''', r''' $MOZ_CHILD_PROCESS_APPNAME ''')
@@ -2307,13 +1798,8 @@ sed 's/$/,/' >> $CONFIG_STATUS <<EOF
     (''' MAR_CHANNEL_ID ''', r''' $MAR_CHANNEL_ID ''')
     (''' ACCEPTED_MAR_CHANNEL_IDS ''', r''' $ACCEPTED_MAR_CHANNEL_IDS ''')
     (''' MOZ_APP_MAXVERSION ''', r''' $MOZ_APP_MAXVERSION ''')
-    (''' OS_CFLAGS ''', list(split(r''' $OS_CFLAGS ''')))
-    (''' OS_CXXFLAGS ''', list(split(r''' $OS_CXXFLAGS ''')))
-    (''' OS_LDFLAGS ''', list(split(r''' $OS_LDFLAGS ''')))
     (''' HOST_CC ''', r''' $HOST_CC ''')
     (''' HOST_CXX ''', r''' $HOST_CXX ''')
-    (''' WIN32_CONSOLE_EXE_LDFLAGS ''', r''' $WIN32_CONSOLE_EXE_LDFLAGS ''')
-    (''' WIN32_GUI_EXE_LDFLAGS ''', r''' $WIN32_GUI_EXE_LDFLAGS ''')
     (''' MOZ_DEV_EDITION ''', r''' $MOZ_DEV_EDITION ''')
     (''' top_srcdir ''', r''' $top_srcdir ''')
 EOF

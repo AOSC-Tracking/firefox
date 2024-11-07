@@ -2821,6 +2821,18 @@ void MacroAssembler::convertUInt64ToFloat32(Register64 src_, FloatRegister dest,
   bind(&done);
 }
 
+void MacroAssembler::flexibleQuotientPtr(
+    Register rhs, Register srcDest, bool isUnsigned,
+    const LiveRegisterSet& volatileLiveRegs) {
+  quotient64(rhs, srcDest, isUnsigned);
+}
+
+void MacroAssembler::flexibleRemainderPtr(
+    Register rhs, Register srcDest, bool isUnsigned,
+    const LiveRegisterSet& volatileLiveRegs) {
+  remainder64(rhs, srcDest, isUnsigned);
+}
+
 #ifdef ENABLE_WASM_TAIL_CALLS
 void MacroAssembler::wasmMarkCallAsSlow() { mov(ra, ra); }
 

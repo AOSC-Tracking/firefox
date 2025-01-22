@@ -10,6 +10,7 @@
 
 #include "AppleATDecoder.h"
 #include "AppleVTDecoder.h"
+#include "H265.h"
 #include "MP4Decoder.h"
 #include "VideoUtils.h"
 #include "VPXDecoder.h"
@@ -33,15 +34,44 @@ using media::DecodeSupportSet;
 using media::MCSInfo;
 using media::MediaCodec;
 
-bool AppleDecoderModule::sInitialized = false;
-bool AppleDecoderModule::sCanUseVP9Decoder = false;
-bool AppleDecoderModule::sCanUseAV1Decoder = false;
+static inline CMVideoCodecType GetCMVideoCodecType(const MediaCodec& aCodec) {
+  switch (aCodec) {
+    case MediaCodec::H264:
+      return kCMVideoCodecType_H264;
+    case MediaCodec::AV1:
+      return kCMVideoCodecType_AV1;
+    case MediaCodec::VP9:
+      return kCMVideoCodecType_VP9;
+    case MediaCodec::HEVC:
+      return kCMVideoCodecType_HEVC;
+    default:
+      return static_cast<CMVideoCodecType>(0);
+  }
+}
 
 /* static */
 void AppleDecoderModule::Init() {
   if (sInitialized) {
     return;
   }
+
+  // Initialize all values to false first.
+  for (auto& support : sCanUseHWDecoder) {
+    support = false;
+  }
+
+  // H264 HW is supported since 10.6.
+  sCanUseHWDecoder[MediaCodec::H264] = CanCreateHWDecoder(MediaCodec::H264);
+  // HEVC HW is supported since 10.13.
+  sCanUseHWDecoder[MediaCodec::HEVC] = CanCreateHWDecoder(MediaCodec::HEVC);
+  // VP9 HW is supported since 11.0 on Apple silicon.
+  sCanUseHWDecoder[MediaCodec::VP9] =
+      RegisterSupplementalDecoder(MediaCodec::VP9) &&
+      CanCreateHWDecoder(MediaCodec::VP9);
+  // AV1 HW is supported since 14.0 on Apple silicon.
+  sCanUseHWDecoder[MediaCodec::AV1] =
+      RegisterSupplementalDecoder(MediaCodec::AV1) &&
+      CanCreateHWDecoder(MediaCodec::AV1);
 
   sInitialized = true;
   if (RegisterSupplementalVP9Decoder()) {
@@ -84,10 +114,10 @@ already_AddRefed<MediaDataDecoder> AppleDecoderModule::CreateAudioDecoder(
 
 DecodeSupportSet AppleDecoderModule::SupportsMimeType(
     const nsACString& aMimeType, DecoderDoctorDiagnostics* aDiagnostics) const {
-  bool checkSupport = aMimeType.EqualsLiteral("audio/mp4a-latm") ||
-                      MP4Decoder::IsH264(aMimeType) ||
-                      VPXDecoder::IsVP9(aMimeType) ||
-                      AOMDecoder::IsAV1(aMimeType);
+  bool checkSupport =
+      aMimeType.EqualsLiteral("audio/mp4a-latm") ||
+      MP4Decoder::IsH264(aMimeType) || VPXDecoder::IsVP9(aMimeType) ||
+      AOMDecoder::IsAV1(aMimeType) || MP4Decoder::IsHEVC(aMimeType);
   DecodeSupportSet supportType{};
 
   if (checkSupport) {
@@ -144,6 +174,9 @@ bool AppleDecoderModule::IsVideoSupported(
     const VideoInfo& aConfig,
     const CreateDecoderParams::OptionSet& aOptions) const {
   if (MP4Decoder::IsH264(aConfig.mMimeType)) {
+    return true;
+  }
+  if (MP4Decoder::IsHEVC(aConfig.mMimeType)) {
     return true;
   }
   if (AOMDecoder::IsAV1(aConfig.mMimeType)) {
@@ -250,29 +283,26 @@ bool AppleDecoderModule::CanCreateHWDecoder(MediaCodec aCodec) {
       vtReportsSupport = false;
       break;
   }
-  // VT reports HW decode is supported -- verify by creating an actual decoder
-  if (vtReportsSupport) {
-    RefPtr<AppleVTDecoder> decoder =
-        new AppleVTDecoder(info, nullptr, {}, nullptr, Nothing());
-    MediaResult rv = decoder->InitializeSession();
-    if (!NS_SUCCEEDED(rv)) {
-      MOZ_LOG(
-          sPDMLog, LogLevel::Debug,
-          ("Apple HW decode failure while initializing VT decoder session"));
-      return false;
-    }
-    nsAutoCString failureReason;
-    // IsHardwareAccelerated appears to return invalid results for H.264 so
-    // we assume that the earlier VTIsHardwareDecodeSupported call is correct.
-    // See: https://bugzilla.mozilla.org/show_bug.cgi?id=1716196#c7
-    bool hwSupport = decoder->IsHardwareAccelerated(failureReason) ||
-                     aCodec == MediaCodec::H264;
-    if (!hwSupport) {
-      MOZ_LOG(sPDMLog, LogLevel::Debug,
-              ("Apple HW decode failure: '%s'", failureReason.BeginReading()));
-    }
-    decoder->Shutdown();
-    return hwSupport;
+
+  // Build up a fake extradata to create an actual decoder to verify
+  VideoInfo info(1920, 1080);
+  if (aCodec == MediaCodec::AV1) {
+    info.mMimeType = "video/av1";
+    bool hasSeqHdr;
+    AOMDecoder::AV1SequenceInfo seqInfo;
+    AOMDecoder::OperatingPoint op;
+    seqInfo.mOperatingPoints.AppendElement(op);
+    seqInfo.mImage = {1920, 1080};
+    AOMDecoder::WriteAV1CBox(seqInfo, info.mExtraData, hasSeqHdr);
+  } else if (aCodec == MediaCodec::VP9) {
+    info.mMimeType = "video/vp9";
+    VPXDecoder::GetVPCCBox(info.mExtraData, VPXDecoder::VPXStreamInfo());
+  } else if (aCodec == MediaCodec::HEVC) {
+    // Although HEVC hardware decoding is supported starting with macOS 10.13
+    // and we only support macOS 10.15+, Intel GPUs (Skylake and later, 2015)
+    // that support HEVC are not old enough to skip verification.
+    info.mMimeType = "video/hevc";
+    info.mExtraData = H265::CreateFakeExtraData();
   }
   return false;
 }

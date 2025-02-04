@@ -1,2 +1,2 @@
-20250120135430
-https://hg.mozilla.org/releases/mozilla-release/rev/33bb8362cc387e2bfd0f9edaa33b66f9954e12d9
+20250130195129
+https://hg.mozilla.org/releases/mozilla-release/rev/17c38d56ca552e154046a33a3ec8d3bb56ae00a1
